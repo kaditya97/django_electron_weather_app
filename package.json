@@ -1,0 +1,81 @@
+{
+  "name": "django_exe",
+  "version": "1.0.0",
+  "description": "A weather app made with django and electron",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [],
+  "author": "Aditya Kushwaha",
+  "license": "ISC",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "ignore": [
+          "/src/pycalc$",
+          "\\.git(ignore|config)",
+          "\\.vscode",
+          "\\.idea",
+          "/package-lock\\.json",
+          "Pipfile($|\\.lock)",
+          "/(api_pythermal|api|prtail)\\.spec",
+          "/bin$",
+          "/build$",
+          "/out2$",
+          "/Output$",
+          "/simple$",
+          "/README\\.md",
+          "/junk*",
+          "/django_exe\\.iss",
+          "/UsbDk_1.0.19_x64\\.msi",
+          "/(api_pythermal|t|t2)\\.py$",
+          "/pythermal$",
+          "weather.spec"
+        ]
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "django_exe"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "afterExtract": [
+        "./dist/weather.exe"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.51",
+    "@electron-forge/maker-deb": "^6.0.0-beta.51",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.51",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
+    "@electron-forge/maker-zip": "^6.0.0-beta.51",
+    "electron": "^9.0.2"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "url-exists": "^1.0.3"
+  }
+}
